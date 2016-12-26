@@ -7,11 +7,24 @@ namespace ProbabTest
 	/// </summary>
 	public class AccuracyFromRefMaterial:BaseVerification
 	{
-		public double XfromRef;
-		public double Sprogram;
-		public int LabsCount;
-		public double FalseRejectionRate;
-		public double t;
+		/// <summary>
+		/// 参考物质赋值 单位mg/dL,默认值40
+		/// </summary>
+		public double XfromRef;		
+		/// <summary>
+		/// 室间质评结果标准差，默认值1.73,
+		/// </summary>
+		public double Sprogram;		
+		/// <summary>
+		/// 参加室间质评的实验室数量，默认值135
+		/// </summary>
+		public int LabsCount;		
+		/// <summary>
+		/// 假排除率，默认值0.01
+		/// </summary>
+		public double FalseRejectionRate;	
+		
+		double t;				//t分布值
 		
 		public AccuracyFromRefMaterial():base()
 		{
@@ -29,7 +42,7 @@ namespace ProbabTest
 			get
 			{
 				double sum=0;
-				foreach(BatchData data in batches)
+				foreach(LabData data in batches)
 					for(int i=0;i<data.Count;i++)
 						sum+=data[i];
 				sum=sum/(BatchCount*MeasuringTimes);
@@ -55,7 +68,7 @@ namespace ProbabTest
 			{
 				double sum=0;
 				double ave=Average;
-				foreach(BatchData data in batches)
+				foreach(LabData data in batches)
 					for(int i=0;i<data.Count;i++)
 						sum+=(data[i]-ave)*(data[i]-ave);
 				return Math.Sqrt(sum/(MeasuringTimes*BatchCount-1));

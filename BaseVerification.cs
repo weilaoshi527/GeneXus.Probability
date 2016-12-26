@@ -8,17 +8,17 @@ namespace ProbabTest
 	/// </summary>
 	public class BaseVerification
 	{
-		protected List<BatchData> batches;
-		protected double checkedValue;
+		protected List<LabData> batches;
+		protected double checkedValue;	//待校验的值
 		
 		public BaseVerification(double beta)
 		{
-			batches=new List<BatchData>();
+			batches=new List<LabData>();
 			checkedValue=beta;
 		}
 		public BaseVerification()
 		{
-			batches=new List<BatchData>();
+			batches=new List<LabData>();
 		}
 		/// <summary>
 		/// 批次总数
@@ -46,7 +46,7 @@ namespace ProbabTest
 		/// 添加测量数据
 		/// </summary>
 		/// <param name="data">测量数据</param>
-		public void Add(BatchData data)
+		public void Add(LabData data)
 		{
 			batches.Add(data);
 		}

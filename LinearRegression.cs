@@ -13,11 +13,11 @@ namespace ProbabTest
 		/// <summary>
 		/// 线性数据X
 		/// </summary>
-		public BatchData X
+		public LabData X
 		{
 			get
 			{
-				BatchData x=new BatchData();
+				LabData x=new LabData();
 				for(int i=0;i<MeasuringTimes;i++)
 					x.Add(i+1);
 				return x;
@@ -26,11 +26,11 @@ namespace ProbabTest
 		/// <summary>
 		/// 线性数据Y
 		/// </summary>
-		public BatchData Y
+		public LabData Y
 		{
 			get	
 			{				
-				BatchData y=new BatchData();
+				LabData y=new LabData();
 				for(int i=0;i<MeasuringTimes;i++)
 				{
 					double average=0;
@@ -49,8 +49,8 @@ namespace ProbabTest
 		{
 			get
 			{
-				BatchData x=X;
-				BatchData y=Y;
+				LabData x=X;
+				LabData y=Y;
 				
 				double sum1=0;				
 				double x_ave=x.Average;
@@ -72,8 +72,8 @@ namespace ProbabTest
 			{
 				double sum1=0;
 				double sum2=0;				
-				BatchData x=X;
-				BatchData y=Y;
+				LabData x=X;
+				LabData y=Y;
 				for(int i=0;i<MeasuringTimes;i++)
 				{
 					sum1+=(x[i]-x.Average)*(y[i]-y.Average);
@@ -89,8 +89,8 @@ namespace ProbabTest
 		{
 			get
 			{
-				BatchData x=X;
-				BatchData y=Y;
+				LabData x=X;
+				LabData y=Y;
 				return y.Average-Slope*x.Average;
 			}
 		}

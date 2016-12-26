@@ -7,16 +7,14 @@ namespace ProbabTest
 	/// </summary>
 	public class PrecisionVerification:BaseVerification
 	{	
-		double C;
-		bool probability;
+		double C;	//Chi方 分布值		
 		public void Set_C(double p)
 		{
-			C=Probability.re_chi2(BatchCount-1,p);
-			probability=true;
+			C=Probability.re_chi2(BatchCount-1,p);			
 		}
 		public PrecisionVerification(double beta):base(beta)
 		{
-			probability=false;
+			C=-1.0;
 		}
 		/// <summary>
 		/// 重复标准差
@@ -26,7 +24,7 @@ namespace ProbabTest
 			get
 			{
 				double sum=0;
-				foreach(BatchData d in batches)
+				foreach(LabData d in batches)
 				{
 					sum+=d.IntraGroupVariance;
 				}
@@ -41,7 +39,7 @@ namespace ProbabTest
 			get
 			{
 				double sum=0;
-				foreach(BatchData d in batches)
+				foreach(LabData d in batches)
 					sum+=d.Average;
 				return sum/BatchCount;
 			}
@@ -54,7 +52,7 @@ namespace ProbabTest
 			get
 			{
 				double sum=0;
-				foreach(BatchData d in batches)
+				foreach(LabData d in batches)
 				{
 					double ave=d.Average-GroupAverage;
 					sum+=ave*ave;
@@ -90,12 +88,15 @@ namespace ProbabTest
 				return T;
 			}
 		}
+		/// <summary>
+		/// 计算精准度的验证值
+		/// </summary>
 		public double PrecisionValue
 		{
 			get
 			{	
 				double T=Freedom;
-				if(!probability)
+				if(C<0)
 					C=Probability.re_chi2(BatchCount-1,0.975);
 				return checkedValue *Math.Sqrt(C)/Math.Sqrt(T);
 			}

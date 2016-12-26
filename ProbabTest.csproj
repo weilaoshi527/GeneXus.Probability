@@ -52,7 +52,7 @@
     <Compile Include="AccuracyFromRefMaterial .cs" />
     <Compile Include="AccuracyFromPatientSample.cs" />
     <Compile Include="BaseVerification.cs" />
-    <Compile Include="BatchData.cs" />
+    <Compile Include="LabData.cs" />
     <Compile Include="LinearRegression.cs" />
     <Compile Include="PrecisionVerification .cs" />
     <Compile Include="Probability.cs" />

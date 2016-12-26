@@ -8,25 +8,25 @@ namespace ProbabTest
 	public class AccuracyFromPatientSample:BaseVerification
 	{
 		double t;		
-		bool probability;
-		public AccuracyFromPatientSample(double beta):base(beta)
+		
+		public AccuracyFromPatientSample(double deta):base(deta)
 		{
-			probability=false;
+			checkedValue=deta;
+			t=-1.0;
 		}
 		
 		public void Set_t(double p)
 		{
-			t=Probability.re_t(MeasuringTimes-1,p);
-			probability=true;
+			t=Probability.re_t(MeasuringTimes-1,p);			
 		}
-		public BatchData Ri
+		public LabData Ri
 		{
 		 	get
 		 	{
 		 		return batches[0];
 		 	}
 		}
-		public BatchData Rc
+		public LabData Rc
 		{
 		 	get
 		 	{
@@ -70,7 +70,7 @@ namespace ProbabTest
 		{
 			get
 			{
-				if(!probability)
+				if(t<0)
 					t=Probability.re_t(MeasuringTimes-1,0.99);	
 				return checkedValue-t*StandardDeviation/Math.Sqrt(MeasuringTimes);
 			}
@@ -82,7 +82,7 @@ namespace ProbabTest
 		{
 			get
 			{
-				if(!probability)
+				if(t<0)
 					t=Probability.re_t(MeasuringTimes-1,0.99);	
 				return checkedValue+t*StandardDeviation/Math.Sqrt(MeasuringTimes);
 			}
