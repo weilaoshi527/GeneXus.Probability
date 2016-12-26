@@ -7,6 +7,7 @@ namespace ProbabTest
 {
     public static class Probability
     {
+    	
         /// <summary>
         /// 计算  n/2 的Γ函数值: Γ(n/2)
         /// </summary>
